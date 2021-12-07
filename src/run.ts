@@ -66,6 +66,7 @@ async function fetchPatch(): Promise<string> {
     const tempDir = await createTempDir()
     const patchPath = path.join(tempDir, "pull.patch")
     core.info(`Writing patch to ${patchPath}`)
+    core.info('PATCH', patch)
     await writeFile(patchPath, patch)
     return patchPath
   } catch (err) {
