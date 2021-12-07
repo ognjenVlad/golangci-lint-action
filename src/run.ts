@@ -66,7 +66,7 @@ async function fetchPatch(): Promise<string> {
     const tempDir = await createTempDir()
     const patchPath = path.join(tempDir, "pull.patch")
     core.info(`Writing patch to ${patchPath}`)
-    core.info('PATCH', patch)
+    core.info(`PATCH ${patch}`)
     await writeFile(patchPath, patch)
     return patchPath
   } catch (err) {
@@ -151,6 +151,7 @@ async function runLint(lintPath: string, patchPath: string): Promise<void> {
   if (workingDirectory) {
     if (patchPath) {
       // TODO: make them compatible
+
       throw new Error(`options working-directory and only-new-issues aren't compatible`)
     }
     if (!fs.existsSync(workingDirectory) || !fs.lstatSync(workingDirectory).isDirectory()) {
